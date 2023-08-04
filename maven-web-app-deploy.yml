@@ -2,34 +2,34 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
- name: mavenwebappdeployment
+ name: hotelwebappdeployment
 spec:
  replicas: 1
  strategy: 
     type: Recreate
  selector: 
    matchLabels: 
-     app: mavenwebapp
+     app: hotelwebapp
  template:
   metadata:
-   name: mavenwebapppod
+   name: hotelwebapppod
    labels:
-     app: mavenwebapp	 
+     app: hotelwebapp	 
   spec: 
     containers:
-    - name: mavenwebappcontainer
-      image: bhanuprakashece410/mavenwebapp
+    - name: hotelwebappcontainer
+      image: bhanuprakashece410/hotelwebapp
       ports:
       - containerPort: 8080
 ---
 apiVersion: v1
 kind: Service
 metadata:
- name: mavenwebappsvc
+ name: hotelwebappsvc
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
-   app: mavenwebapp
+   app: hotelwebapp
   ports:
    - port: 80
      targetPort: 8080
